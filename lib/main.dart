@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spotify/screens/main_screen.dart';
+import 'package:flutter_spotify/screens/music_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: MainScreen(),
+      routes: {
+        MusicDetailsScreen.routeName:(context)=>MusicDetailsScreen(),
+      }
     );
   }
 }

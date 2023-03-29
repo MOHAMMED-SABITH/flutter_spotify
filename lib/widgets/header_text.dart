@@ -11,7 +11,7 @@ class HeaderText extends StatelessWidget {
     return Text(
       heading,
       style: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 27),
     );
   }
 }

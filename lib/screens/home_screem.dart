@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -65,23 +65,91 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const HeaderText(heading: 'Made for You'),
+              const HeaderText(
+                heading: 'Made for You',
+              ),
               const SizedBox(
                 height: 20,
               ),
-
-              const MusicTile(),
-              // Container(
-              //   width: 150,
-              //   height: 250,
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(20),
-              //     image: DecorationImage(
-              //       image: NetworkImage(
-              //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSnB8WwXLKD1sM_6DPDv-5UC31TM2Hf-PpZw&usqp=CAU'),
-              //     ),
-              //   ),
-              // )
+              MusicTile(
+                sharingImages: madeForYouImages,
+                bottmContain: Stack(
+                  children: [
+                    Container(
+                      width: 160,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.accents[0].withOpacity(0.5)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        madeForYouTitle[0],
+                        style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'Based on your recent listening'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: recentListening),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'Recently played'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: recentlyPlayed),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'India\'s Best'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: IndiaBest),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'Your top mixes'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: yourTopMixes),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'Best of artists'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: bestOfArtist),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'More of what you like'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: whatYouLike),
+              const SizedBox(
+                height: 20,
+              ),
+              const HeaderText(heading: 'Recommended for today'),
+              const SizedBox(
+                height: 20,
+              ),
+              MusicTile(sharingImages: recommendToday),
             ],
           ),
         ),
