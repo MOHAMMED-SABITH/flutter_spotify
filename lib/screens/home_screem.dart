@@ -8,11 +8,18 @@ import 'package:flutter_spotify/widgets/music_tile.dart';
 import '../data/dummy_data.dart';
 import '../widgets/homescreen_reccomendation.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    var indexData;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -71,29 +78,27 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              // NotificationListener<IndexProvider>(
+              //   onNotification: (notification) {
+              //     print(notification.index);
+              //     // if (notification.index == null) {
+              //     //   return true;
+              //     // }
+              //     indexData = notification.index;
+              //     // setState(() {
+              //     //   // if (notification.index == null) {
+              //     //   //   return;
+              //     //   // }
+              //     //   indexData = notification.index;
+              //     // });
+              //     return true;
+              //   },
+              //   child:
               MusicTile(
-                sharingImages: madeForYouImages,
-                bottmContain: Stack(
-                  children: [
-                    Container(
-                      width: 160,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.accents[0].withOpacity(0.5)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        madeForYouTitle[0],
-                        style: const TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                  section: 'madeforyou',
+                  sharingImages: madeForYouImages,
+                  bottmContain: madeForYouTitle),
+
               const SizedBox(
                 height: 20,
               ),

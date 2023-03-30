@@ -10,11 +10,16 @@ import '../data/dummy_data.dart';
 const artistDetails = lofihiphopMusic;
 
 class MusicTile extends StatelessWidget {
-  MusicTile({super.key, required this.sharingImages, this.bottmContain});
+  MusicTile({
+    super.key,
+    required this.sharingImages,
+    this.bottmContain,
+    this.section = '',
+  });
 
   final sharingImages;
   final bottmContain;
-
+  String section;
   @override
   Widget build(BuildContext context) {
     final madeForUImages = sharingImages;
@@ -52,6 +57,7 @@ class MusicTile extends StatelessWidget {
             children: List.generate(
               5,
               (index) {
+                IndexProvider(index).dispatch(context);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: InkWell(
@@ -66,39 +72,40 @@ class MusicTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                            alignment: Alignment.bottomCenter,
-                            width: 160,
-                            height: 155,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    madeForUImages[index],
-                                  ),
-                                  fit: BoxFit.cover),
-                            ),
-                            child: bottmContain
-                            // Stack(
-                            //   children: [
-                            //     Container(
-                            //       width: 160,
-                            //       height: 50,
-                            //       decoration: BoxDecoration(
-                            //           color:
-                            //               Colors.accents[0].withOpacity(0.5)),
-                            //     ),
-                            //     Padding(
-                            //       padding: const EdgeInsets.all(10),
-                            //       child: Text(
-                            //         madeForYouTitle[0],
-                            //         style: const TextStyle(
-                            //             fontSize: 25,
-                            //             fontWeight: FontWeight.bold,
-                            //             color: Colors.white),
-                            //       ),
-                            //     )
-                            //   ],
-                            // ),
-                            ),
+                          alignment: Alignment.bottomCenter,
+                          width: 160,
+                          height: 155,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  madeForUImages[index],
+                                ),
+                                fit: BoxFit.cover),
+                          ),
+                          child: (section == 'madeforyou')
+                              ? Stack(
+                                  children: [
+                                    Container(
+                                      width: 160,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          color: Colors.accents[0]
+                                              .withOpacity(0.5)),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        bottmContain[index],
+                                        style: const TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              : null,
+                        ),
                         const SizedBox(
                           height: 8,
                         ),
@@ -125,4 +132,9 @@ class MusicTile extends StatelessWidget {
       ],
     );
   }
+}
+
+class IndexProvider extends Notification {
+  final int index;
+  IndexProvider(this.index);
 }
