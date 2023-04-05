@@ -1,8 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_spotify/screens/music_detail_screen.dart';
 
 import '../data/dummy_data.dart';
@@ -20,9 +19,16 @@ class MusicTile extends StatelessWidget {
   final sharingImages;
   final bottmContain;
   String section;
+
   @override
   Widget build(BuildContext context) {
     final madeForUImages = sharingImages;
+
+    // AssetsAudioPlayer.newPlayer().open(
+    //   Audio("assets/musics/Kesariya .mp3"),
+    //   autoStart: true,
+    //   showNotification: true,
+    // );
 
     return
         // CarouselSlider(
@@ -57,7 +63,7 @@ class MusicTile extends StatelessWidget {
             children: List.generate(
               5,
               (index) {
-                IndexProvider(index).dispatch(context);
+                // IndexProvider(index).dispatch(context);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: InkWell(
@@ -67,6 +73,10 @@ class MusicTile extends StatelessWidget {
                         'Images': madeForUImages[index],
                         'Details': artistDetails[index],
                       });
+                    
+                      // assetsAudioPlayer.playOrPause();
+                      // assetsAudioPlayer.play();
+                      // assetsAudioPlayer.pause();
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +144,7 @@ class MusicTile extends StatelessWidget {
   }
 }
 
-class IndexProvider extends Notification {
-  final int index;
-  IndexProvider(this.index);
-}
+// class IndexProvider extends Notification {
+//   final int index;
+//   IndexProvider(this.index);
+// }

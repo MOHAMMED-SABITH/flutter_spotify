@@ -1,18 +1,22 @@
-import 'dart:math';
 import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../data/dummy_data.dart';
 import '../widgets/music_tile.dart';
 
-class MusicDetailsScreen extends StatelessWidget {
+class MusicDetailsScreen extends StatefulWidget {
   const MusicDetailsScreen({super.key});
   static const routeName = '/music-details';
+
+  @override
+  State<MusicDetailsScreen> createState() => _MusicDetailsScreenState();
+}
+
+class _MusicDetailsScreenState extends State<MusicDetailsScreen> {
   // final imageUrl;
+  bool _isPlaying = true;
+  bool _audioPlaying = true;
+  final assetsAudioPlayer = AssetsAudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -103,34 +107,57 @@ class MusicDetailsScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.heart_broken,
                             color: Colors.white,
                             size: 35,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.more_vert,
                             color: Colors.white,
                             size: 35,
                           ),
-                          Spacer(),
-                          CircleAvatar(
-                            maxRadius: 25,
-                            backgroundColor: Colors.green,
-                            child: Icon(
-                              Icons.play_arrow,
-                              color: Colors.black,
-                              size: 35,
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              setState(
+                                () {
+                                  _isPlaying = !_isPlaying;
+                                },
+                              );
+                              if (_isPlaying == false) {
+                                if (_audioPlaying == true) {
+                                  assetsAudioPlayer.open(
+                                    Audio("assets/musics/Kesariya .mp3"),
+                                  );
+                                }
+                                assetsAudioPlayer.play();
+                              }
+                              if (_isPlaying == true) {
+                                assetsAudioPlayer.pause();
+                              }
+                              _audioPlaying = false;
+                            },
+                            child: CircleAvatar(
+                              maxRadius: 25,
+                              backgroundColor: Colors.green,
+                              child: Icon(
+                                _isPlaying == true
+                                    ? Icons.play_arrow
+                                    : Icons.pause,
+                                color: Colors.black,
+                                size: 35,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Expanded(

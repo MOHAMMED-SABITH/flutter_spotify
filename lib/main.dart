@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MainScreen(),
       routes: {
-        MusicDetailsScreen.routeName:(context)=>MusicDetailsScreen(),
+        MusicDetailsScreen.routeName:(context)=>const MusicDetailsScreen(),
       }
     );
   }

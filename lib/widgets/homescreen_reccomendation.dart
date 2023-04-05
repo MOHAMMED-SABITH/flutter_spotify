@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
+ 
 import '../data/dummy_data.dart';
 
 class HomeScreenReccomendation extends StatelessWidget {
@@ -13,6 +12,7 @@ class HomeScreenReccomendation extends StatelessWidget {
     const title = searchSuggestionTileTitle;
     const reccomendImages = homeScreenReccomendationImages;
     return GridView.count(
+      physics: const ScrollPhysics(),
       crossAxisCount: 2,
       shrinkWrap: true,
       mainAxisSpacing: 8,
