@@ -1,10 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../data/dummy_data.dart';
 import '../data/dummy_data.dart';
 
 class SearchscreenSuggestion extends StatelessWidget {
